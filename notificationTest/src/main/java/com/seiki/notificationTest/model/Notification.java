@@ -1,14 +1,14 @@
 package com.seiki.notificationTest.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,12 +20,16 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title is required")
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Message is required")
+    @Size(max = 1000, message = "Message must not exceed 1000 characters")
+    @Column(nullable = false, length = 1000)
     private String message;
 
+    @NotBlank(message = "Type is required")
     @Column(nullable = false)
     private String type;
 
