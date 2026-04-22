@@ -1,5 +1,6 @@
 package com.seiki.notificationTest.service;
 
+import com.seiki.notificationTest.exception.NotificationNotFoundException;
 import com.seiki.notificationTest.model.Notification;
 import com.seiki.notificationTest.repository.NotificationRepository;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class NotificationService {
 
     public void markAsRead(Long id) {
         Notification notification = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Notification not found: " + id));
+                .orElseThrow(() -> new NotificationNotFoundException(id));
         notification.setRead(true);
         repository.save(notification);
     }
