@@ -22,7 +22,7 @@ public class OpenApiConfig {
                         .description("API for real-time notifications with SSE")
                         .contact(new Contact()
                                 .name("Developer")
-                                .email("gabrielseiki2004@gmail.com.com")))
+                                .email("gabrielseiki2004@gmail.com")))
                 .servers(List.of(
                         new Server().url("http://localhost:8080").description("Local server")
                 ));
